@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+
+        <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+
+        <link href="static/styles.css" rel="stylesheet">
+
+        <link href="/static/images/tfg-favicon.png" rel="icon">
+
+        <title>Friend leagues {% block title %}{% endblock %}</title>
+
+        {% block style %}
+        {% endblock %}
+
+        <script>
+            function user_visible() {
+                if (document.getElementById("user-box").style.display === "none") {
+                    document.getElementById("user-box").style.display = "inline-flex";
+                } else {
+                    document.getElementById("user-box").style.display = "none";
+                }
+            } 
+
+            /* usage in <a> onclick="user_visible()" */
+
+            function openForm() {
+                document.getElementById("myForm").style.display = "block";
+                document.getElementById("myForm-button").style.display = "none";
+            }
+
+            function closeForm() {
+                document.getElementById("myForm").style.display = "none";
+                document.getElementById("myForm-button").style.display = "block";
+            }
+        </script>
+
+    </head>
+
+    <body>
+        <div>
+            <div class="topnav">
+                <a class="topnav-main" href="/">
+                    <span class="material-icons topnav-icon" style="color: var(--blue)"> style </span> 
+                    <b>The Friendly Games</b>
+                </a>
+        {% if current_user.is_authenticated %}
+                <a class="topnav-user" href="{{ url_for('main.profile') }}" style="color: var(--yellow);">
+                    <span class="material-icons"> person </span>
+                    <b> Profile </b>
+                </a>
+                <a class="topnav-user" href="{{ url_for('auth.logout') }}" style="color: var(--yellow);">
+                    <span class="material-icons"> logout </span>
+                    <b> Logout </b>
+                </a>
+        </div>
+        <div>
+            <ul id="sidenav" class="sidenav">
+                <li> <a class="sidenav-item" href="/lineup"style="background-color: var(--purple);"> 
+                    <span class="material-icons">  emoji_events </span> 
+                    <b class="sidenav-text"> Lineup </b></a> </li>
+                <li> <a class="sidenav-item " href="/leaderboard"style="background-color: var(--blue);"> 
+                    <span class="material-icons .sidenav-icon">  format_list_numbered </span>
+                    <b class="sidenav-text"> Leaderboard </b></a> </li>
+                <li> <a class="sidenav-item" href="/gameboard" style="background-color: var(--green);"> 
+                    <span class="material-icons sidenav-icon">  scoreboard </span>
+                    <b class="sidenav-text"> Gameboard   </b></a> </li>
+                <li> <a class="sidenav-item " href="/rulebook"style="background-color: var(--orange);">   
+                    <span class="material-icons"> rule </span> 
+                    <b class="sidenav-text"> Rulebook</b> </a> </li>
+                <li> <a class="sidenav-item "  href="/settings"style="background-color: var(--red);"> 
+                    <span class="material-icons">  quiz </span> 
+                    <b class="sidenav-text"> Settings</b></a> </li>
+            </ul>
+        </div>
+        {% else %}
+                <a #id="topnav-user" class="topnav-user"  href="{{ url_for('auth.login') }}" style="color: var(--yellow);">
+                    <span class="material-icons"> login </span>
+                    <b> Login </b>
+                </a>
+                <a #id="topnav-user" class="topnav-user" href="{{ url_for('auth.signup') }}" style="color: var(--yellow);">
+                    <span class="material-icons"> person_add </span>
+                    <b> Join </b>
+                </a>
+        </div>
+        {% endif %}
+        <main >
+            {% block body %}{% endblock %}
+        </main>
+
+        <footer>
+            Website created by me.
+        </footer>
+
+    </body>
+
+</html>

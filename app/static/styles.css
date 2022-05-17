@@ -1,0 +1,458 @@
+:root {
+    /* sitewide font */
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 2vmin;
+    color: var(--black);
+    /* main colors */
+    
+    --purple: #9c00ccff;
+    --violet: #4B40C9;
+    --blue: #0085c7ff; 
+    --green: #009f37ff;
+    --apple: #7ab11cff;
+    --yellow: #FAB30F;
+    --orange: #ff711fff;
+    --red: #D12929;
+    --pink: #EF476F;
+    --black: rgba(53, 53, 53, 1);
+    --black-shade: rgba(53, 53, 53, 0.7);
+    --grey: rgb(100, 100, 100);
+    }
+
+.material-icons { padding-right: 15px; padding-left: 15px; }
+
+/* main & body */
+main {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 120px;
+}
+
+body {
+    margin: auto;
+  }
+
+@media screen and (max-width: 700px) {
+    main {
+        margin-left:0%;
+        margin-top: 0%;
+        margin-right: 0%;
+    }
+}
+
+/* page title-block settings */
+
+.title-block {
+    text-align: center;
+    font-size: 3.5vmax;
+    border-radius: 2vmin;
+    padding-top: 1vh;
+    margin-top: 5vh;
+}
+
+/* general use button settings */
+
+.button-item {
+    background-color: var(--black);
+    display: inline-flex;
+    align-items: center;
+    color: white;
+    max-width: 8rem;
+    margin: .5vw;
+    padding: 1.5vw;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: 0.3s;
+    border-radius: 2vmin;
+    -webkit-transition: 0.3s;
+}
+
+.button-item .material-icons {
+    padding: 0px;
+}
+
+.button-item:hover {
+    background-color: rgb(100, 100, 100);
+}
+
+/* universal board settings */
+
+.board-row {
+    justify-content: space-evenly;
+    display: grid;
+    align-content: center;
+    padding: .2vw;
+    margin-bottom: 1vh;
+}
+
+.row-apply-grid {
+    grid-template-columns: .6fr 4fr;
+}
+
+.row-apply-grid-b {
+    grid-template-columns: .6fr 4fr .6fr;
+}
+
+.board-pill {
+    display: grid;
+    align-content: center;
+    border-radius: 2vmin;
+}
+
+/* support a varriable number of teams or players and maintain rididity, i know, its the best i could figure out*/
+.board-pill-grid-1 {
+    grid-template-columns: 1fr;
+}
+
+.board-pill-grid-2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+.board-pill-grid-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.board-pill-grid-4 {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.board-pill-grid-5 {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.board-pill-grid-6 {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.board-pill-grid-7 {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.board-pill-grid-8 {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.board-rank {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 1vw;
+    margin-right: .5vw;
+    margin-left: .5vw;
+    border-radius: 2vmin;
+}
+
+.withdrawn {
+    color: rgb(170, 170, 170);
+    background-color: var(--grey);
+    text-decoration: line-through;
+}
+
+.board-item {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 1vw;
+    border-radius: 2vmin;
+    margin-right: .5vw;
+    margin-left: .5vw;
+}
+
+/* Tournament Page Settings */
+
+.tourney-board {
+    display: flex;
+    background-color: rgb(242, 207, 253);
+    padding: 2vw;
+    color: white;
+    border-radius: 2vmin;
+    margin-top: 16px;
+    justify-content: space-evenly;
+    
+}
+
+.tourney-block {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    border-radius: 2vmin;
+    background-color: var(--black);
+    margin: 1vmax;
+}
+
+.tourney-box {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    border-radius: 2vmin;
+    background-color: var(--black);
+    padding: 0;
+    margin: 1vmax;
+}
+
+.tourney-box-grid {
+    grid-template-columns: 1fr 3fr;
+}
+
+.tourney-row {
+    display: grid;
+    align-content: center;
+    border-radius: 2vmin;
+}
+
+.tourney-row-grid-a {
+    grid-template-columns: 1fr 1fr .25fr;
+}
+
+.tourney-row-grid-b {
+    grid-template-columns: 1fr 1fr;
+}
+
+.tourney-item {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2vmin;
+    font-style: bold;
+    padding: 2vmax;
+    margin: 1vmin;
+}
+
+/* leaderboard settings */
+
+.leaderboard {
+    display: grid;
+    background-color: #D6F1FF;
+    padding: 2vw;
+    color: white;
+    border-radius: 2vmin;
+    margin-top: 16px;
+}
+
+.leaderboard-form {
+    display: none;
+}
+
+/* gameboard settings */
+
+.gameboard {
+    display: grid;
+    background-color: #d6ffe2;
+    padding: 2vw;
+    color: white;
+    border-radius: 2vmin;
+    margin-top: 16px;
+}
+
+.sticky-names {
+    position:sticky;
+}
+
+/* responsive board settings */
+@media screen and (max-width: 700px) {
+    .tourney-board {
+        display: grid;
+        
+    }
+
+    .gameboard {
+        font-size: 1vmax;
+    }
+
+    .leaderboard {
+        font-size: 1vmax;
+    }
+}
+
+/* Navbars */
+
+/* top-navbar elements on large screen*/
+.topnav {
+    display: flex;
+    margin: 0;
+    padding: 0%;
+    background-color: #353535ff;
+    position: fixed;
+    top: 0;
+    height: 60px;
+    width: 100%;
+    align-items: center;
+    z-index: +1;
+    }
+
+.topnav-main {
+    display: flex;
+    color: white;
+    text-decoration: none;
+    align-items: center;
+    flex: 10;
+}
+
+.topnav-icon {
+    display: grid;
+}
+
+.topnav-user {
+    display:flex;
+    padding:1vmin;
+    transition: 0.3s;
+    flex: -1;
+}
+
+.topnav-user:hover {
+    border-radius: 3vmin;
+    padding: .5vmin;
+    background-color: #0000002a;
+}
+
+.user-box {
+    display: none;
+    width: 25%;
+    position: absolute;
+    top: 60px;
+    left: 75%;
+    height: 200px;
+    background-color: var(--black);
+    border-radius: 0 0 0 2vmin;
+    z-index: +2;
+}
+
+.user-block {
+    border-radius: 2vmin;
+    margin: 2vmin;
+    padding: 2vmin;
+    background-color: var(--blue);
+}
+
+/* responsive topbar */
+@media screen and (max-width: 700px) {
+    .topnav.responsive a:not(:first-child), .dropdown .dropbtn {
+        display: none;
+    }
+    .topnav {
+        position: relative;
+        height: 30px;
+    }
+    .topnav-user {
+        display: none;
+    }
+
+    .topnav-item {
+        float: right;
+        padding: 5px;}
+
+    .topnav-icon {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 8px;
+        text-decoration: none;
+        content: \F229;
+        }
+}
+
+/* side navbar on large screens */
+.sidenav {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    height: 48px;
+    font-size: large;
+  }
+
+.sidenav-item {
+    display: grid;
+    color: white;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--red);
+    height: 100%;
+}
+
+.sidenav-item .material-icons {
+    padding: 0;
+    display: none;
+}
+
+.sidenav-icon {
+    color: white;
+}
+
+.sidenav-user {
+    display: none;
+}
+
+.sidenav-text {
+    transition: 0.3s;
+    padding: 1vmin;
+}
+
+.sidenav-text:hover {
+    border-radius: 2vmin;
+    padding: 1vmin;
+    padding-left: 1.5vmin;
+    background-color: #0000002a;
+}
+
+/* Responsive sidebar */
+@media screen and (max-width: 700px) {
+    .sidenav {
+        list-style-type: none;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        position: fixed;
+        top:auto;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        margin: 0;
+        height: 40px;
+    }
+
+    .sidenav-item:hover {
+        text-shadow: 2px 2px 4px #000000;
+    }
+
+    .sidenav-item .material-icons {
+        display: flex;
+        justify-content: center;
+        padding: .25rem;
+        font-size: 2.5vmin;    }
+
+    .sidenav-text {
+        display: flex;
+        font-size: 1vmin;
+        padding-bottom: 1vmin;
+    }
+
+}
+/*
+@media all and (min-width: 50px)   {  body  { font-size:0.1em;  } }
+@media all and (min-width: 100px)  {  body  { font-size:0.2em;  } }
+@media all and (min-width: 200px)  {  body  { font-size:0.4em;  } }
+@media all and (min-width: 300px)  {  body  { font-size:0.6em;  } }
+@media all and (min-width: 400px)  {  body  { font-size:0.8em;  } }
+@media all and (min-width: 500px)  {  body  { font-size:1.0em;  } }
+@media all and (min-width: 600px)  {  body  { font-size:1.2em;  } }
+@media all and (min-width: 700px)  {  body  { font-size:1.4em;  } }
+@media all and (min-width: 800px)  {  body  { font-size:1.6em;  } }
+@media all and (min-width: 900px)  {  body  { font-size:1.8em;  } }
+@media all and (min-width: 1000px) {  body  { font-size:1.0em;  } }
+@media all and (min-width: 1100px) {  body  { font-size:1.2em;  } }
+@media all and (min-width: 1200px) {  body  { font-size:1.4em;  } }
+@media all and (min-width: 1300px) {  body  { font-size:1.6em;  } }
+@media all and (min-width: 1400px) {  body  { font-size:1.8em;  } }
+@media all and (min-width: 1500px) {  body  { font-size:1.0em;  } }
+@media all and (min-width: 1500px) {  body  { font-size:1.2em;  } }
+@media all and (min-width: 1600px) {  body  { font-size:1.4em;  } }
+@media all and (min-width: 1700px) {  body  { font-size:1.6em;  } }

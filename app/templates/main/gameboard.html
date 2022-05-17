@@ -1,0 +1,96 @@
+{% extends "layout.html" %}    
+
+{% block title %}
+Game Board
+{% endblock %}
+
+{% block style %}
+<style>
+        body {
+                background-color: var(--green);
+        }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="title-block" style="background-color: rgb(107, 212, 144);">
+        <a><b>GAMEBOARD</b></a>
+</div>
+
+<div>   
+        <ul class="gameboard">
+                <!-- Game board style for VS/elimination style games-->
+        {% if game.style == "vs" %}
+                {% for x in range(game.roundsplayed|int) %}
+                <div class="board-row row-apply-grid-b">
+                        <li class="board-rank" style="background-color: var(--black); ">
+                                <a>Round {{ x + 1 }}</a>
+                        </li>
+                        <div class="board-pill board-pill-grid-{{ (tournament.playerstotal|int / 2)|int }}">
+                        {% for v in vs %}
+                                <div class="board-item" style="background-color: var(--black); justify-content: space-evenly; grid-template-columns: 1fr .25fr 1fr;">
+                                        {% for team in teams %}
+                                                {% if teams[team].id|int == v %}
+                                                        <li class="board-item" style="background-color: var(--{{ teams[team].color }});">
+                                                                <a>{{teams[team].name }} </a>
+                                                        </li>
+                                                        <a class="board-item">VS</a>
+                                                {% elif teams[team].id|int == vs[v] %}
+                                                        <li class="board-item" style="background-color: var(--{{ teams[team].color }});">
+                                                                <a>{{teams[team].name }} </a>
+                                                        </li>
+                                                {% endif %}
+                                        {% endfor %}                                        
+                                </div>
+                        {% endfor %}
+                        </div>
+                        <li class="board-item" style="background-color: var(--black-shade);">
+                                <a><span class="material-icons sidenav-icon">  settings </span></a>
+                        </li>
+                </div>
+                {% endfor %}
+        {% else %}
+                <!-- List players in game by colomn-->
+                <div class="board-row row-apply-grid">
+                        <li class="board-rank">
+                                <a></a>
+                        </li>
+                        <!-- dynamically add players by column with a functional limit of 8 players (too many teams/player becomes hard to manage at this state. IDK man. This design stuff is still new to me)-->
+                        <div class="board-pill board-pill-grid-{{ tournament.playerstotal }}">
+                        {% for team in teams %}
+                                <li class="board-item sticky-names" style="background-color: var(--{{ teams[team].color }});">
+                                        <a>{{ teams[team].name }}</a>
+                                </li>
+                        {% endfor %}
+                        </div>
+                </div>
+                {% for x in range(game.roundstotal|int) %}
+                <div class="board-row row-apply-grid">
+                        <li class="board-rank" style="background-color: var(--black);">
+                                <a>{{ x + 1 }}</a>
+                        </li>
+                        <div class="board-pill board-pill-grid-{{ tournament.playerstotal }}">
+                                {% for team in teams %}
+                                <li class="board-item" style="background-color: var(--{{ teams[team].color }});">
+                                        <a>2</a>
+                                </li>
+                                {% endfor %}
+                        </div>
+                </div>
+                {% endfor %}
+                <div class="board-row row-apply-grid">
+                        <li class="board-rank" style="background-color: var(--black); ">
+                                <a>Total</a>
+                        </li>
+                        <div class="board-pill board-pill-grid-{{ tournament.playerstotal }}">
+                        {% for team in teams %}
+                                <li class="board-item" style="background-color: var(--{{ teams[team].color }});">
+                                        <a>{{ 2 * 18}} </a>
+                                </li>
+                        {% endfor %}
+                        </div>
+                </div>
+        {% endif %}
+</div>
+
+{% endblock %}

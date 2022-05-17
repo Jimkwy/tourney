@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Lineup
+{% endblock %}
+
+{% block style %}
+<style>
+    body {
+            background-color: var(--purple);
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="title-block" style="background-color: #e788ff;">
+    <b>Lineup</b>
+</div>
+
+<div>
+    <ul class="tourney-board">
+        {% for day in days %}
+        <div class="tourney-block" style="background-color: var(--black);">
+            <li class="tourney-box">
+                <h3>Day {{day}}</h3>
+            </li>
+            {% for game in games %}
+                {% if games[game].day|int == day %}
+                    <div class="tourney-box"style="background-color: var(--{{games[game].color}});">
+                            <li>
+                                <h3><a>{{game}}</a></h3>
+                            </li>
+                    </div>
+                    <div class="tourney-block"style="background-color: var(--{{games[game].color}});">
+                        <div class="tourney-row tourney-row-grid-a">
+                            <li class="tourney-item" style="background-color: var(--black-shade);">
+                                {% if games[game].rounds %}
+                                    <a>{{games[game].rounds}} Rounds</a>
+                                {% else %}
+                                    <a>{{games[game].holes}} Holes</a>
+                                {% endif %}
+                            </li>
+                            <li class="tourney-item" style="background-color: var(--black-shade);">
+                                <a>{{games[game].style}}</a>
+                            </li>
+                            <li class="tourney-item" style="background-color: var(--black-shade);">
+                                <a href="/{{game}}"><span class="material-icons sidenav-icon">  settings </span></a>
+                            </li>
+                        </div>
+                        <div class="tourney-row">
+                            <li class="tourney-item" style="background-color: var(--black-shade); justify-content: left;">
+                                <b>Location: My house</b>
+                                <b>Time: </b>
+                                <b>Description</b>
+                                <a>{{games[game].description}}</a>
+                            </li>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </ul> 
+</div>
+
+{% endblock %}

@@ -1,0 +1,138 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Leaderboard
+{% endblock %}
+
+{% block style %}
+<style>
+        body {
+                background-color: var(--blue);
+        }
+</style>
+{% endblock %}
+
+{% block body %}
+<!-- title of the tourniment name with placeholder if no tourniment name has been set-->
+
+<div class="title-block" style="background-color: #63c2f1;;">
+        <a><b>LEADERBOARD</b></a>
+</div>
+
+<div>
+        
+        <!-- List players in game by row, with over all scores and places-->
+        
+        <ul class="leaderboard">
+                <div class="board-row row-apply-grid">
+                        <li class="board-rank">
+                                <a></a>
+                        </li>
+                        <div class="board-pill  board-pill-grid-4" style="background-color: var(--black); ">
+                                <li class="board-item" >
+                                        <a>PLAYER</a>
+                                </li>
+                                <li class="board-item" >
+                                        <a >PTS</a>
+                                </li>
+                                <li class="board-item" >
+                                        <a >GAMES</a>
+                                </li>
+                                <li class="board-item">
+                                        <a >STATUS</a>
+                                </li>
+                        </div>
+                </div>
+
+        {% for team in teams %}
+        <!-- List players by rank, checking against their rank in the table-->
+        <!-- If the team's status is eliminated, we will display the chosen team color in th text wrather than the cell background, aen apply a strike through-->
+                        
+                {% if teams[team].status != 'Active' %}
+                <div class="board-row row-apply-grid">
+                        <li class="board-rank withdrawn">
+                                <a >{{ teams[team].rank }}</a>
+                        </li>
+                        <div class="withdrawn board-pill board-pill-grid-4">
+                                <li class="board-item">
+                                        <a >{{ teams[team].name }}</a>
+                                </li>
+                                <li class="board-item ">
+                                        <a >{{ teams[team].score }}</a>
+                                </li>
+                                <li class="board-item">
+                                        <a >{{ teams[team].gamesplayed }} / {{ tournament.gamestotal }}</a>
+                                </li>
+                                <li class="board-item">
+                                        <a >{{ teams[team].status }}</a>
+                                </li>
+                        </div>
+                </div>
+                {% else %}
+                <div class="board-row row-apply-grid" >
+                        <li class="board-rank" style="background-color: var(--{{ teams[team].color }});">
+                                <a >{{ teams[team].rank }}</a>
+                        </li>
+                        <div class="board-pill board-pill-grid-4" style="background-color: var(--{{ teams[team].color }});">
+                                <li class="board-item">
+                                        <a >{{ teams[team].name }}</a>
+                                </li>
+                                <li class="board-item">
+                                        <a >{{ teams[team].score }}</a>
+                                </li>
+                                <li class="board-item">
+                                        <a >{{ teams[team].gamesplayed }} / {{ tournament.gamestotal }}</a>
+                                </li>
+                                <li class="board-item status">
+                                        <a">{{ teams[team].status }}</a>
+                                </li>
+                        </div>
+                </div>
+                {% endif %}
+                
+                
+        {% endfor %}
+
+            <div id="myForm" class="leaderboard-form">
+                <form action="/leaderboard">
+                        <div class="board-row row-apply-grid" >
+                                <li class="board-rank" style="padding: 1vw; padding-top: 2.1vw; padding-bottom: 2vw; background-color: var(--black);">
+                                        <a>New Team</a>
+                                </li>
+                                <div class="board-pill board-pill-grid-4" style="background-color: var(--black);">
+                                        <li class="board-item ">
+                                                <input for="name" type="text" placeholder="Team Name" name="name" size="13" required>
+                                        </li>
+                                        <li class="board-item " >
+                                                <select placeholder="Team Color" name="color" for="color" required>
+                                                        <option value="null">Team Color</option>
+                                                        <option value="purple">Purple</option>
+                                                </select>
+                                        </li>
+                                        <li class="board-item">
+                                                <input type="submit" value="Submit" style="border:none; background-color: var(--black); color:white; font-weight: bold;">
+                                        </li>
+                                        <li class="board-item status" onclick="closeForm()">
+                                                <a> <b>Cancel</b></a>
+                                        </li>
+                                </div>
+                        </div>
+                </form>
+        </div>
+        <div id="myForm-button">
+                <div>
+                        <p class="board-rank" onclick="openForm()" style="background-color: var(--black); float: right; margin-top:0;">
+                                <span class="material-icons">
+                                        add
+                                </span>
+                                <a>
+                                        Add Team
+                                </a>
+                        </p>
+                </div>
+        </div>
+        </ul>
+        <caption>You may add delete listed players, points, games, and win/loss/ties at any time in settings</caption>
+    </div>
+
+{% endblock %}
